@@ -124,6 +124,7 @@ const StyledPropertyGroup = styled.div`
   margin: 10px;
   border: 1px solid #dedede;
   border-radius: 10px;
+  background-color: #ffffff;
 
   h2 {
     text-align: center;
