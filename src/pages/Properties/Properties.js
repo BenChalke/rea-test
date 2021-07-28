@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropertyGroup from "../../components/PropertyGroup/PropertyGroup";
 
-class Properties extends React.Component {
+export default class Properties extends React.Component {
   constructor() {
     super();
 
@@ -59,41 +59,45 @@ class Properties extends React.Component {
         ]
       }
     }
-
-
+  }
+  saveProperty() {
+    console.log('save');
+  }
+  removeProperty() {
+    console.log('remove');
   }
   render() {
     return(
       <StyledProperties className="Properties">
         <StyledPropertyGroup className="PropertyGroup">
           <h2>Results</h2>
-          <PropertyGroup properties={this.state.propertyData.results} />
+          <PropertyGroup properties={this.state.propertyData.results} saveProperty={this.saveProperty}/>
         </StyledPropertyGroup>
         <StyledPropertyGroup className="PropertyGroup">
           <h2>Saved Properties</h2>
-          <PropertyGroup properties={this.state.propertyData.saved} />
+          <PropertyGroup properties={this.state.propertyData.saved} removeProperty={this.removeProperty}/>
         </StyledPropertyGroup>
       </StyledProperties>
     );
   }
 }
 
-export default Properties;
-
-// Styles
+// Component Styles
 const StyledPropertyGroup = styled.div`
-    flex: 1 1 400px;
-    margin: 0 auto;
+  flex: 1 1 400px;
+  margin: 0 auto;
 
-    h2 {
-      text-align: center;
-    }
+  h2 {
+    text-align: center;
+  }
 `;
 
 const StyledProperties = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333333;
 `;
+// End styles
