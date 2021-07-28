@@ -8,7 +8,7 @@ export default function SingleProperty(props) {
 
   return (
     <StyledSingleProperty data-id={id} className="SingleProperty" onClick={props.propertyFunction}>
-      <button className={`action-button ${props.propertyAction.toLowerCase()}`}>{props.propertyAction}</button>
+      <button id="action-button" className={`action-button ${props.propertyAction.toLowerCase()}`}>{props.alreadySaved ? "Saved!" : props.propertyAction}</button>
       <div className="hover-overlay"></div>
       <StyledHeader color={brandingColors.primary}>
         <StyledImg className="property-logo" src={logo} />

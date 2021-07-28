@@ -62,14 +62,30 @@ export default class Properties extends React.Component {
 
     this.removeProperty = this.removeProperty.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
+    this.alreadySaved = this.alreadySaved.bind(this);
+
+  }
+  alreadySaved(id) {
+    let propertyData = this.state.propertyData;
+    const foundItem = propertyData.saved.filter(item => item.id === id);
+    return foundItem.length > 0;
+
   }
   saveProperty(e) {
     const id = e.currentTarget.dataset.id;
 
     let propertyData = this.state.propertyData;
 
+    // Check if already saved
+    if(this.alreadySaved(id, propertyData)) {
+      return;
+    }
+
     const property = propertyData.results.filter(item => item.id === id);
     propertyData.saved = [...propertyData.saved, property[0]];
+
+    const button = e.currentTarget.querySelector('.action-button');
+    button.innerHTML = 'Saved!';
 
     this.setState({
       propertyData: propertyData
@@ -91,7 +107,7 @@ export default class Properties extends React.Component {
       <StyledProperties className="Properties">
         <StyledPropertyGroup className="PropertyGroup">
           <h2>Results</h2>
-          <PropertyGroup properties={this.state.propertyData.results} saveProperty={this.saveProperty}/>
+          <PropertyGroup properties={this.state.propertyData.results} saveProperty={this.saveProperty} savedData={this.state.propertyData.saved} />
         </StyledPropertyGroup>
         <StyledPropertyGroup className="PropertyGroup">
           <h2>Saved Properties</h2>
