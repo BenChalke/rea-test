@@ -1,5 +1,6 @@
 
 import React from 'react';
+import styled from 'styled-components';
 import PropertyGroup from "../../components/PropertyGroup/PropertyGroup";
 
 class Properties extends React.Component {
@@ -63,13 +64,36 @@ class Properties extends React.Component {
   }
   render() {
     return(
-      <div className="Properties">
-        <p>Properties Screen</p>
-        <PropertyGroup properties={this.state.propertyData.results} />
-        <PropertyGroup properties={this.state.propertyData.saved} />
-      </div>
+      <StyledProperties className="Properties">
+        <StyledPropertyGroup className="PropertyGroup">
+          <h2>Results</h2>
+          <PropertyGroup properties={this.state.propertyData.results} />
+        </StyledPropertyGroup>
+        <StyledPropertyGroup className="PropertyGroup">
+          <h2>Saved Properties</h2>
+          <PropertyGroup properties={this.state.propertyData.saved} />
+        </StyledPropertyGroup>
+      </StyledProperties>
     );
   }
 }
 
 export default Properties;
+
+// Styles
+const StyledPropertyGroup = styled.div`
+    flex: 1 1 400px;
+    margin: 0 auto;
+
+    h2 {
+      text-align: center;
+    }
+`;
+
+const StyledProperties = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+`;
