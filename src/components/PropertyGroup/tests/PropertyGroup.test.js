@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import PropertyGroup from './PropertyGroup';
+import PropertyGroup from '../PropertyGroup';
 
 test('renders the property group element', () => {
   render(<PropertyGroup />);

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import SingleProperty from './SingleProperty';
+import SingleProperty from '../SingleProperty';
 
 test('renders the single property component', () => {
   render(<SingleProperty />);
