@@ -59,12 +59,32 @@ export default class Properties extends React.Component {
         ]
       }
     }
+
+    this.removeProperty = this.removeProperty.bind(this);
+    this.saveProperty = this.saveProperty.bind(this);
   }
-  saveProperty() {
-    console.log('save');
+  saveProperty(e) {
+    const id = e.currentTarget.dataset.id;
+
+    let propertyData = this.state.propertyData;
+
+    const property = propertyData.results.filter(item => item.id === id);
+    propertyData.saved = [...propertyData.saved, property[0]];
+
+    this.setState({
+      propertyData: propertyData
+    });
   }
-  removeProperty() {
-    console.log('remove');
+  removeProperty(e) {
+    const id = e.currentTarget.dataset.id;
+
+    let propertyData = this.state.propertyData;
+    const newSavedData = propertyData.saved.filter(item => item.id !== id);
+    propertyData.saved = newSavedData;
+
+    this.setState({
+      propertyData: propertyData
+    });
   }
   render() {
     return(
@@ -85,7 +105,9 @@ export default class Properties extends React.Component {
 // Component Styles
 const StyledPropertyGroup = styled.div`
   flex: 1 1 400px;
-  margin: 0 auto;
+  margin: 10px;
+  border: 1px solid #dedede;
+  border-radius: 10px;
 
   h2 {
     text-align: center;

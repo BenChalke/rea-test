@@ -7,7 +7,7 @@ export default function PropertyGroup(props) {
       {
         // Add all of the Single property components based on the data
         props.properties.map(function(property, i){
-          return <SingleProperty property={property} key={i} propertyAction={props.removeProperty ? props.removeProperty : props.saveProperty} />;
+          return <SingleProperty property={property} key={i} propertyFunction={props.removeProperty ? props.removeProperty : props.saveProperty} propertyAction={props.removeProperty ? 'Remove' : 'Save'} />;
         })
       }
     </StyledPropertyGroup>

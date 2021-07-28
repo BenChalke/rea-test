@@ -7,7 +7,9 @@ export default function SingleProperty(props) {
   const { id, mainImage, price } = props.property;
 
   return (
-    <StyledSingleProperty data-id={id} className="SingleProperty" onClick={props.propertyAction}>
+    <StyledSingleProperty data-id={id} className="SingleProperty" onClick={props.propertyFunction}>
+      <button className={`action-button ${props.propertyAction.toLowerCase()}`}>{props.propertyAction}</button>
+      <div className="hover-overlay"></div>
       <StyledHeader color={brandingColors.primary}>
         <StyledImg className="property-logo" src={logo} />
       </StyledHeader>
@@ -29,6 +31,49 @@ const StyledSingleProperty = styled.div`
   box-shadow: 2px 2px 5px #dedede, -2px -1px 5px #dedede;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
+
+  .action-button {
+    display: none;
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: 500;
+    z-index: 4;
+
+    &.save {
+      background-color: #00b300;
+    }
+
+    &.remove {
+      background-color: #e60000;
+    }
+  }
+
+  .hover-overlay {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &:hover .action-button {
+    display: block;
+  }
+
+  &:hover .hover-overlay {
+    display: block;
+  }
 `;
 
 const StyledHeader = styled.div`
