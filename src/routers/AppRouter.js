@@ -2,8 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 import Properties from '../pages/Properties/Properties';
 
-class AppRouter extends React.Component {
-  // Use this component to switch directory/page
+// Use this component to switch directory/page
+export default class AppRouter extends React.Component {
   render() {
     return (
       <AppDiv>
@@ -13,10 +13,9 @@ class AppRouter extends React.Component {
   }
 }
 
-export default AppRouter;
-
-
+// Component Styles
 const AppDiv = styled.div`
   background-color: #333333;
   min-height: 100vh;
 `;
+// End styles

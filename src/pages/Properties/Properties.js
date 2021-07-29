@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropertyGroup from "../../components/PropertyGroup/PropertyGroup";
 
+// This is the property page component 
+// Add any data and functions you will need into this component
 export default class Properties extends React.Component {
   constructor() {
     super();
@@ -60,20 +62,24 @@ export default class Properties extends React.Component {
       }
     }
 
+    // Need to bind the functions to `this` in order to use `this` in the function
     this.removeProperty = this.removeProperty.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
     this.alreadySaved = this.alreadySaved.bind(this);
 
   }
   alreadySaved(id) {
+    // Check if the property is already saved and return result
     let propertyData = this.state.propertyData;
     const foundItem = propertyData.saved.filter(item => item.id === id);
+
+    // Returns true or false only
     return foundItem.length > 0;
 
   }
   saveProperty(e) {
+    // Add property to saved list
     const id = e.currentTarget.dataset.id;
-
     let propertyData = this.state.propertyData;
 
     // Check if already saved
@@ -81,23 +87,30 @@ export default class Properties extends React.Component {
       return;
     }
 
+    // Get the property by ID and copy it to the saved list
     const property = propertyData.results.filter(item => item.id === id);
     propertyData.saved = [...propertyData.saved, property[0]];
 
+    // Change the text of the hover button to reflect the save
     const button = e.currentTarget.querySelector('.action-button');
     button.innerHTML = 'Saved!';
 
+    // Set the new property data to the state
     this.setState({
       propertyData: propertyData
     });
   }
   removeProperty(e) {
+    // Get ID of clicked property
     const id = e.currentTarget.dataset.id;
-
+    // Get all property data
     let propertyData = this.state.propertyData;
+    // Filter the saved property data by IDs to remove the clicked property
     const newSavedData = propertyData.saved.filter(item => item.id !== id);
+    // Set the new saved property data
     propertyData.saved = newSavedData;
 
+    // Set the new property data to the state
     this.setState({
       propertyData: propertyData
     });
